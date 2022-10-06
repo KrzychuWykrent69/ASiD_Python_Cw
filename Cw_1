@@ -45,9 +45,12 @@ print(funkcja7(lista))
 #b = tuple(krotka)
 #print(b)
 
+
 #zad9
 def funkcja9(liczba):
-    slownik ={1 : "poniedziałek", 2:}
+    slownik ={1 : "poniedziałek", 2: "wtorek", 3 :"środa",4:"czwartek",5:"piątek",6:"sobota",7:"niedziela"}
+    return slownik[liczba]
+print(funkcja9(2))
 
 
 
