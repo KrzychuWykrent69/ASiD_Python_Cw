@@ -1,0 +1,24 @@
+
+class TreeNode:
+    def __init__(self,value):
+        self.value = value
+        self.children = []
+    def __str__(self):
+        wys = ''
+        for i in self.children:
+            wys = f"{str(i)}->{wys}"
+        return  wys
+    def add(self,dziecko):
+        self.children.append(dziecko)
+
+    def isLeaf(self):
+        return len(self.children) == 0
+
+
+drzewo = TreeNode(11)
+
+drzewo.add(34)
+drzewo.add(5)
+drzewo.add(44)
+drzewo.add(2)
+print(drzewo)
