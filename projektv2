@@ -1,0 +1,54 @@
+def dd(tab):
+    n = 2
+    if len(tab)==1:
+        tab2 = 2 * [None]
+    else:
+        while n<len(tab):
+            n=n*2
+        tab2 = n * [None]
+
+    for i in range(0,len(tab)):
+        tab2[i] = tab[i]
+
+    return tab2
+
+
+class Tba_ros_g:
+
+    def __init__(self,tab):
+        self.tab = tab
+        #self.zajetosc = len(self.tab)
+        #self.pojemnosc = len(dd(self.tab))
+
+
+    def ustal(self,idx,wartosc):
+        dl_tab = len(self.tab)
+       # self.tab1 = self.tab.copy()
+        self.tab +=  ((idx+1)-dl_tab)*['']
+        self.tab[idx] = wartosc
+        #self.tab = self.tab1
+        self.tab3 = dd(self.tab)
+        return  self.tab3#dd(self.tab)
+
+    def pobierz(self,idx):
+        if idx>len(self.tab):
+            return " "
+        else:
+            return str(self.tab[idx])
+
+
+
+    #def __str__(self):
+     #   return str(dd(self.tab))
+
+
+tablica = Tba_ros_g(['a','b','c'])
+tablica.ustal(4,3)
+tablica.ustal(6,67)
+print(tablica.ustal(10,2))
+print(tablica.pobierz(4))
+
+
+#tab1 = ['a','g','d']
+#tab1 +=2*[None]
+#print(tab1)
