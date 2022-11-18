@@ -1,54 +1,70 @@
-def dd(tab):
-    n = 2
-    if len(tab)==1:
-        tab2 = 2 * [None]
-    else:
-        while n<len(tab):
-            n=n*2
-        tab2 = n * [None]
-
-    for i in range(0,len(tab)):
-        tab2[i] = tab[i]
-
-    return tab2
-
 
 class Tba_ros_g:
 
     def __init__(self,tab):
         self.tab = tab
-        #self.zajetosc = len(self.tab)
-        #self.pojemnosc = len(dd(self.tab))
+        self.zajetosc = 0
+        self.pojemnosc = 2
 
+    def lista_z_None(self,wartosc=None):
+        n = 2
+        if wartosc != None:
+            self.tab.insert(0,wartosc)
+
+        if len(self.tab) == 1:
+            self.tab2 = 2 * [None]
+        else:
+            while n < len(self.tab):
+                n = n * 2
+            self.tab2 = n * [None]
+
+        for i in range(0, len(self.tab)):
+            self.tab2[i] = str(self.tab[i])
+
+
+        return self.tab2
 
     def ustal(self,idx,wartosc):
+
         dl_tab = len(self.tab)
-       # self.tab1 = self.tab.copy()
         self.tab +=  ((idx+1)-dl_tab)*['']
         self.tab[idx] = wartosc
-        #self.tab = self.tab1
-        self.tab3 = dd(self.tab)
-        return  self.tab3#dd(self.tab)
+        return  self.lista_z_None()
 
-    def pobierz(self,idx):
-        if idx>len(self.tab):
-            return " "
+    def pobierz(self, idx):
+            
+        if idx > len(self.tab):
+            return "[ ]"
         else:
-            return str(self.tab[idx])
+            return f'indek:{idx} wartość:{self.tab[idx]}'
+
+    def dodaj_za_koniec(self,wartosc):
+
+        dl = len(self.tab)
+        return  self.ustal(dl,wartosc)
+
+    def dodaj_przed(self,wartosc):
+
+        return self.lista_z_None(wartosc)
 
 
 
-    #def __str__(self):
-     #   return str(dd(self.tab))
-
+    def __str__(self):
+        return  str(self.tab2)
 
 tablica = Tba_ros_g(['a','b','c'])
+
 tablica.ustal(4,3)
 tablica.ustal(6,67)
-print(tablica.ustal(10,2))
+tablica.ustal(12,7)
+tablica.ustal(10,'a')
+tablica.dodaj_za_koniec(4)
+tablica.ustal(11,9)
+tablica.dodaj_przed(55)
+tablica.dodaj_przed(44)
+tablica.ustal(17,4)
+tablica.ustal(11,999)
+tablica.ustal(11,8)
+
+print(tablica)
 print(tablica.pobierz(4))
-
-
-#tab1 = ['a','g','d']
-#tab1 +=2*[None]
-#print(tab1)
