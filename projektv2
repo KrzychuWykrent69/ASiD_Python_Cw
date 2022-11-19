@@ -1,38 +1,43 @@
-
 class Tba_ros_g:
+    zajetosc : int
+    pojemnosc : int
 
-    def __init__(self,tab):
-        self.tab = tab
+    def __init__(self):
+        self.tab = [None, None]
         self.zajetosc = 0
         self.pojemnosc = 2
 
-    def lista_z_None(self,wartosc=None):
+    def lista_z_None(self):
         n = 2
-        if wartosc != None:
-            self.tab.insert(0,wartosc)
 
-        if len(self.tab) == 1:
+        if len(self.tab) == 1 or len(self.tab) == 0:
             self.tab2 = 2 * [None]
         else:
             while n < len(self.tab):
                 n = n * 2
+                self.pojemnosc = n
             self.tab2 = n * [None]
 
         for i in range(0, len(self.tab)):
             self.tab2[i] = str(self.tab[i])
 
-
         return self.tab2
 
-    def ustal(self,idx,wartosc):
+    def ustal(self, idx, wartosc):
+
+        if len(self.tab) == 2:
+            for i in range(0, 2):
+                if self.tab[i] == None:
+                    self.tab[i] = ''
 
         dl_tab = len(self.tab)
-        self.tab +=  ((idx+1)-dl_tab)*['']
+        self.tab += ((idx+1)-dl_tab)*['']
         self.tab[idx] = wartosc
-        return  self.lista_z_None()
+
+        return self.lista_z_None()
 
     def pobierz(self, idx):
-            
+
         if idx > len(self.tab):
             return "[ ]"
         else:
@@ -41,30 +46,55 @@ class Tba_ros_g:
     def dodaj_za_koniec(self,wartosc):
 
         dl = len(self.tab)
-        return  self.ustal(dl,wartosc)
+        return  self.ustal(dl, wartosc)
 
-    def dodaj_przed(self,wartosc):
+    def dodaj_przed(self, idx, wartosc):
+        self.tab.insert(idx-1, wartosc)
 
-        return self.lista_z_None(wartosc)
+        return self.lista_z_None()
+
+    def uprosc(self):
+
+        while self.pojemnosc/2 < len(self.tab2):
+            for i in range(int(self.pojemnosc - self.pojemnosc/2)):
+                self.tab2.pop(-1)
+
+    def print(self):
+
+        for i in range(len(self.tab2)):
+            if self.tab2[i] is not None:
+                if self.tab2[i] == '':
+                    print(';', end=' ')
+                else:
+                    print(self.tab2[i], end=' ')
+
+    #def sortuj(self):
+
+      #  n = len(self.tab)
+     #   for i in range(0, n - 1):
+       #     miejsce = i
+        #    for j in range(i + 1, n):
+         #       if self.tab[j] < self.tab[miejsce] :
+          #          miejsce = j
+           # self.tab[i], self.tab[miejsce] = self.tab[miejsce], self.tab[i]
+
+       # return self.lista_z_None()
 
 
 
     def __str__(self):
         return  str(self.tab2)
 
-tablica = Tba_ros_g(['a','b','c'])
+tablica = Tba_ros_g()
 
-tablica.ustal(4,3)
-tablica.ustal(6,67)
-tablica.ustal(12,7)
-tablica.ustal(10,'a')
+tablica.ustal(4, 3)
+tablica.ustal(6, 67)
+tablica.ustal(5, 7)
+tablica.ustal(2, 7)
 tablica.dodaj_za_koniec(4)
-tablica.ustal(11,9)
-tablica.dodaj_przed(55)
-tablica.dodaj_przed(44)
-tablica.ustal(17,4)
-tablica.ustal(11,999)
-tablica.ustal(11,8)
-
+tablica.dodaj_przed(2, 4)
+tablica.dodaj_przed(1, 444)
+#tablica.sortuj()
 print(tablica)
+
 print(tablica.pobierz(4))
